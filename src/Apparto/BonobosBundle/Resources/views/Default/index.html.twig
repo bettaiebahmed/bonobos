@@ -74,21 +74,30 @@
 					<div class="line-divider"></div>
 					<div class="form-wrapper">
 						<p class="signup-text">inscrivez vous et recontrer plus des bonobos</p>
-						<form action="#">
+						{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+                                        
 							<fieldset class="form-group">
-								<input type="text" class="form-control" id="example-name" placeholder="Votre Nom">
+	          {{form_widget(form.username,{ 'attr': {'class': 'form-control','placeholder':'pseudo'} })}}
+
+                                                            
 							</fieldset>
 							<fieldset class="form-group">
-								<input type="email" class="form-control" id="example-email" placeholder="Votre Email">
+	          {{form_widget(form.email,{ 'attr': {'class': 'form-control','placeholder':'email'} })}}
 							</fieldset>
 							<fieldset class="form-group">
-								<input type="password" class="form-control" id="example-password" placeholder="Mot de Passe">
+	          {{form_widget(form.plainPassword.first,{ 'attr': {'class': 'form-control','placeholder':'mot de passe'} })}}
 							</fieldset>
-						</form>
+                                                        <fieldset class="form-group">
+	          {{form_widget(form.plainPassword.second,{ 'attr': {'class': 'form-control','placeholder':'confirmation mot de passe'} })}}
+							</fieldset>
 						<p>vous acceptez nos terms lorsque tu click sur inscription</p>
-						<button class="btn-secondary">Inscription</button>
+						
+                                                
+                                                <input type="submit" class="btn-secondary" value="inscription"></input>
+                        {{form_rest(form)}}
+                                                {{ form_end(form) }}
 					</div>
-					<a href="#">Already have an account?</a>
+					<a href="#">Vous avez déja un compte?</a>
 					<img class="form-shadow" src="images/bottom-shadow.png" alt="" />
 				</div><!-- Sign Up Form End -->
 
