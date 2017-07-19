@@ -70,6 +70,9 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: Apparto\BonobosBundle\Entity\User
+    registration:
+        form:
+            name: app_user_registration
     from_email:
         address: "%mailer_user%"
         sender_name: "%mailer_user%"

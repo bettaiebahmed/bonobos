@@ -22,6 +22,15 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
+        
+        if( $this->container->get('security.context')->isGranted('ROLE_USER') ){
+                            return $this->redirect($this->generateUrl('bonobos_social_page'));
+      
+}
+        
+        
+        
+        
                 $formFactory = $this->get('fos_user.registration.form.factory');
   /** @var $formFactory FactoryInterface */
         $formFactory = $this->get('fos_user.registration.form.factory');
