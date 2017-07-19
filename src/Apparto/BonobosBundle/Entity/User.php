@@ -68,7 +68,20 @@ function setNouriture($nouriture) {
 function setAge($age) {
     $this->age = $age;
 }
+       /**
 
+ * @ORM\ManyToMany(targetEntity="User", mappedBy="myFriends")
+ **/
+    private $friendsWithMe;
+      /**
+   
+   * @ORM\ManyToMany(targetEntity="User", inversedBy="friendsWithMe")
+ *@ORM\JoinTable(name="friends",
+ * joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+ * inverseJoinColumns={@ORM\JoinColumn(name="friend_user_id", referencedColumnName="id")}
+ * )
+ **/
+    private $myFriends;
 
  
  
@@ -77,7 +90,59 @@ function setAge($age) {
  parent::__construct();
  // your own logic
      $this->roles = array('ROLE_USER');
+$this->friendsWithMe = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->myFriends = new \Doctrine\Common\Collections\ArrayCollection();
 
  }
+ 
+ 
+ /**
+    * Add amis
+    *
+    * @param \Apparto\BonobosBundle\Entity\User $amis
+    * @return User
+    */
+   public function setAmis(User $amis)
+   {
+       $this->myFriends[] = $amis;
+       
+ 
+       return TRUE;
+   }
+   /**
+    * Add amis
+    *
+    * @param \Apparto\BonobosBundle\Entity\User $amis
+    * @return User
+    */
+   public function deleteAmis(User $amis)
+   {
+       $this->myFriends->removeElement($amis);
+ 
+       return TRUE;
+   }
+   /**
+    * test amis
+    *
+    * @param \Apparto\BonobosBundle\Entity\User $amis
+    * @return boolean
+    */
+   public function isFriend(User $amis)
+   {
+      return $this->myFriends->contains($amis);
+ 
+      
+   }
+ 
+ /**
+    * Get amis
+    *
+    * @return \Doctrine\Common\Collections\Collection
+    */
+   public function getAmis()
+   {
+       return $this->myFriends;
+   }
+ 
 }
 ?>

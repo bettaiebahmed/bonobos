@@ -9,9 +9,8 @@
           ================================================= -->
     			<div class="col-md-3" style="position:static;">
             <div class="profile-card">
-            	<img src="images/users/user-1.jpg" alt="user" class="profile-photo" />
-            	<h5><a href="timeline.html" class="text-white">Sarah Cruiz</a></h5>
-            	<a href="#" class="text-white"><i class="ion ion-android-person-add"></i> 1,299 followers</a>
+            	<img src="{{asset('images/users/user-1.jpg')}}" alt="user" class="profile-photo" />
+            	<h5><a href="{{ path("bonobos_social_profile") }}" class="text-white"></a></h5>
             </div><!--profile card ends-->
             <ul class="nav-news-feed">
               <li><i class="icon ion-ios-paper"></i><div><a href="newsfeed.html">My Newsfeed</a></div></li>
@@ -23,17 +22,7 @@
             </ul><!--news-feed links ends-->
             <div id="chat-block">
               <div class="title">Chat online</div>
-              <ul class="online-users list-inline">
-                <li><a href="newsfeed-messages.html" title="Linda Lohan"><img src="images/users/user-2.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
-                <li><a href="newsfeed-messages.html" title="Sophia Lee"><img src="images/users/user-3.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
-                <li><a href="newsfeed-messages.html" title="John Doe"><img src="images/users/user-4.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
-                <li><a href="newsfeed-messages.html" title="Alexis Clark"><img src="images/users/user-5.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
-                <li><a href="newsfeed-messages.html" title="James Carter"><img src="images/users/user-6.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
-                <li><a href="newsfeed-messages.html" title="Robert Cook"><img src="images/users/user-7.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
-                <li><a href="newsfeed-messages.html" title="Richard Bell"><img src="images/users/user-8.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
-                <li><a href="newsfeed-messages.html" title="Anna Young"><img src="images/users/user-9.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
-                <li><a href="newsfeed-messages.html" title="Julia Cox"><img src="images/users/user-10.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
-              </ul>
+              
             </div><!--chat block ends-->
           </div>
     			<div class="col-md-7">
@@ -44,8 +33,8 @@
             	<div class="row">
             		<div class="col-md-7 col-sm-7">
                   <div class="form-group">
-                    <img src="images/users/user-1.jpg" alt="" class="profile-photo-md" />
-                    <textarea name="texts" id="exampleTextarea" cols="30" rows="1" class="form-control" placeholder="Write what you wish"></textarea>
+                    <img src="{{asset('images/users/user-1.jpg')}}" alt="" class="profile-photo-md" />
+                    <textarea name="texts" id="exampleTextarea" cols="30" rows="1" class="form-control" placeholder="Exprimez vous"></textarea>
                   </div>
                 </div>
             		<div class="col-md-5 col-sm-5">
@@ -62,128 +51,60 @@
             	</div>
             </div><!-- Post Create Box End -->
 
-            <!-- Friend List
-            ================================================= -->
-            <div class="friend-list">
-            	<div class="row">
-            		<div class="col-md-6 col-sm-6">
-                  <div class="friend-card">
-                  	<img src="images/covers/1.jpg" alt="profile-cover" class="img-responsive cover" />
-                  	<div class="card-info">
-                      <img src="images/users/user-3.jpg" alt="user" class="profile-photo-lg" />
-                      <div class="friend-info">
-                        <a href="#" class="pull-right text-green">My Friend</a>
-                      	<h5><a href="timeline.html" class="profile-link">Sophia Lee</a></h5>
-                      	<p>Student at Harvard</p>
-                      </div>
-                    </div>
+          <div class="people-nearby">
+                                     {% for u in users%}
+                                            {% if app.user.id==u.id %}
+                           {% else %}
+
+
+              <div class="nearby-user">
+                <div class="row">
+                  <div class="col-md-2 col-sm-2">
+                    <img src="{{asset('images/users/user-1.jpg')}}" alt="user" class="profile-photo-lg" />
                   </div>
-                </div>
-            		<div class="col-md-6 col-sm-6">
-                  <div class="friend-card">
-                  	<img src="images/covers/3.jpg" alt="profile-cover" class="img-responsive cover" />
-                  	<div class="card-info">
-                      <img src="images/users/user-4.jpg" alt="user" class="profile-photo-lg" />
-                      <div class="friend-info">
-                        <a href="#" class="pull-right text-green">My Friend</a>
-                      	<h5><a href="timeline.html" class="profile-link">John Doe</a></h5>
-                      	<p>Traveler</p>
-                      </div>
-                    </div>
+                  <div class="col-md-7 col-sm-7">
+                    <h5><a href="#" class="profile-link">{{u.username}}</a></h5>
+                    <p>{{u.race}}</p>
+                    <p class="text-muted">{{u.famille}}</p>
                   </div>
-                </div>
-                <div class="col-md-6 col-sm-6">
-                  <div class="friend-card">
-                  	<img src="images/covers/4.jpg" alt="profile-cover" class="img-responsive cover" />
-                  	<div class="card-info">
-                      <img src="images/users/user-10.jpg" alt="user" class="profile-photo-lg" />
-                      <div class="friend-info">
-                        <a href="timeline.html" class="pull-right text-green">My Friend</a>
-                      	<h5><a href="#" class="profile-link">Julia Cox</a></h5>
-                      	<p>Art Designer</p>
-                      </div>
-                    </div>
+                
+                  {% if app.user.isFriend(u) %}
+
+                  <div class="col-md-3 col-sm-3">
+                      <a href="{{ path('add_bonobos', {'id': u.id }) }}"><button class="btn btn-primary pull-right">Déja Amis</button></a>
                   </div>
-                </div>
-                <div class="col-md-6 col-sm-6">
-                  <div class="friend-card">
-                  	<img src="images/covers/5.jpg" alt="profile-cover" class="img-responsive cover" />
-                  	<div class="card-info">
-                      <img src="images/users/user-7.jpg" alt="user" class="profile-photo-lg" />
-                      <div class="friend-info">
-                        <a href="#" class="pull-right text-green">My Friend</a>
-                      	<h5><a href="timelime.html" class="profile-link">Robert Cook</a></h5>
-                      	<p>Photographer at Photography</p>
-                      </div>
-                    </div>
+                  
+                   <div class="col-md-3 col-sm-3">
+                      <a href="{{ path('delete_bonobos', {'id': u.id }) }}"><button class="btn btn-primary pull-right">Effacer</button></a>
                   </div>
-                </div>
-                <div class="col-md-6 col-sm-6">
-                  <div class="friend-card">
-                  	<img src="images/covers/6.jpg" alt="profile-cover" class="img-responsive cover" />
-                  	<div class="card-info">
-                      <img src="images/users/user-8.jpg" alt="user" class="profile-photo-lg" />
-                      <div class="friend-info">
-                        <a href="#" class="pull-right text-green">My Friend</a>
-                      	<h5><a href="timeline.html" class="profile-link">Richard Bell</a></h5>
-                      	<p>Graphic Designer at Envato</p>
-                      </div>
-                    </div>
+                  {% endif %}
+                   {% if app.user.isFriend(u)==false %}
+
+                  <div class="col-md-3 col-sm-3">
+                      <a href="{{ path('add_bonobos', {'id': u.id }) }}"><button class="btn btn-primary pull-right">Ajouter Amis</button></a>
                   </div>
+                  
+                 
+                  {% endif %}
+
                 </div>
-                <div class="col-md-6 col-sm-6">
-                  <div class="friend-card">
-                  	<img src="images/covers/7.jpg" alt="profile-cover" class="img-responsive cover" />
-                  	<div class="card-info">
-                      <img src="images/users/user-2.jpg" alt="user" class="profile-photo-lg" />
-                      <div class="friend-info">
-                        <a href="#" class="pull-right text-green">My Friend</a>
-                      	<h5><a href="timeline.html" class="profile-link">Linda Lohan</a></h5>
-                      	<p>Software Engineer</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6 col-sm-6">
-                  <div class="friend-card">
-                  	<img src="images/covers/8.jpg" alt="profile-cover" class="img-responsive cover" />
-                  	<div class="card-info">
-                      <img src="images/users/user-9.jpg" alt="user" class="profile-photo-lg" />
-                      <div class="friend-info">
-                        <a href="#" class="pull-right text-green">My Friend</a>
-                      	<h5><a href="timeline.html" class="profile-link">Anna Young</a></h5>
-                      	<p>Musician</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6 col-sm-6">
-                  <div class="friend-card">
-                  	<img src="images/covers/9.jpg" alt="profile-cover" class="img-responsive cover" />
-                  	<div class="card-info">
-                      <img src="images/users/user-6.jpg" alt="user" class="profile-photo-lg" />
-                      <div class="friend-info">
-                        <a href="#" class="pull-right text-green">My Friend</a>
-                      	<h5><a href="timeline.html" class="profile-link">James Carter</a></h5>
-                      	<p>CEO at IT Farm</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6 col-sm-6">
-                  <div class="friend-card">
-                  	<img src="images/covers/10.jpg" alt="profile-cover" class="img-responsive cover" />
-                  	<div class="card-info">
-                      <img src="images/users/user-5.jpg" alt="user" class="profile-photo-lg" />
-                      <div class="friend-info">
-                        <a href="#" class="pull-right text-green">My Friend</a>
-                      	<h5><a href="timeline.html" class="profile-link">Alexis Clark</a></h5>
-                      	<p>Traveler</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-            	</div>
+              </div>
+                  {% endif %}
+
+                                        {% endfor %}
+
+             
+             
+              </div>
+         
+          
+              </div>
+             
+            
+             
+            
+              </div>
+          
             </div>
           </div>
 

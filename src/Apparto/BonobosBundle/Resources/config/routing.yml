@@ -7,3 +7,10 @@ bonobos_social_page:
 bonobos_social_profile:
     path:     /sociale/profile
     defaults: { _controller: BonobosBundle:Profile:Modify }
+add_bonobos:
+    path:     /sociale/addFriend{id}
+    defaults: { _controller: BonobosBundle:Social:addFriend }
+    
+delete_bonobos:
+    path:     /sociale/deleteFriend{id}
+    defaults: { _controller: BonobosBundle:Social:deleteFriend }
