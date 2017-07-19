@@ -1,0 +1,109 @@
+{% extends "BonobosBundle::layout.html.twig"%}
+
+
+ {% block body %}
+<div class="container">
+
+      <!-- Timeline
+      ================================================= -->
+      <div class="timeline">
+        <div class="timeline-cover">
+
+          <!--Timeline Menu for Large Screens-->
+          <div class="timeline-nav-bar hidden-sm hidden-xs">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="profile-info">
+                  <img src="{{asset('images/users/user-1.jpg')}}" alt="" class="img-responsive profile-photo" />
+                 
+                                                          {% for u in user%}
+
+                  <h3>{{u.username}}</h3>
+                  <p class="text-muted">{{u.race}}</p>
+                                    {% endfor %}
+
+                </div>
+              </div>
+              <div class="col-md-9">
+                <ul class="list-inline profile-menu">
+                  <li><a href="#" class="active">Profile</a></li>
+                  <li><a href="#">Amis</a></li>
+                </ul>
+               
+              </div>
+            </div>
+          </div><!--Timeline Menu for Large Screens End-->
+
+          <!--Timeline Menu for Small Screens-->
+          <div class="navbar-mobile hidden-lg hidden-md">
+            <div class="profile-info">
+              <img src="{{asset('images/users/user-1.jpg')}}" alt="" class="img-responsive profile-photo" />
+               {% for u in user%}
+
+                  <h4>{{u.username}}</h4>
+                  <p class="text-muted">{{u.race}}</p>
+                                    {% endfor %}
+            </div>
+            <div class="mobile-menu">
+              <ul class="list-inline">
+                <li><a href="timeline-about.html" class="active">Profile</a></li>
+                <li><a href="timeline-friends.html">Amis</a></li>
+              </ul>
+            </div>
+          </div><!--Timeline Menu for Small Screens End-->
+
+        </div>
+        <div id="page-contents">
+          <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-7">
+
+              <!-- About
+              ================================================= -->
+              <div class="about-profile">
+                <div class="about-content-block">
+                  <h4 class="grey"><i class="ion-ios-information-outline icon-in-title"></i> Information</h4>
+                <form action="" method="post" {{ form_enctype(form) }}>
+		                                                          {% for u in user%}
+
+                    <fieldset class="form-group">
+                                                            <label>Age</label> 
+	          {{form_widget(form.age,{'value' : u.age },{ 'attr': {'class': 'form-control','placeholder':'age'} })}}
+							</fieldset>
+							<fieldset class="form-group">
+							
+                                                            <label>Race</label> 
+
+	          {{form_widget(form.race,{'value' : u.race },{ 'attr': {'class': 'form-control','placeholder':'race'} })}}
+							</fieldset>
+							<fieldset class="form-group">
+							
+                                                            <label>Nouriture</label> 
+
+	          {{form_widget(form.nouriture,{'value' : u.nouriture },{ 'attr': {'class': 'form-control','placeholder':'nouriture'} })}}
+							</fieldset>
+                                                  <fieldset class="form-group">
+							
+                                                            <label>Famille</label> 
+
+	          {{form_widget(form.famille,{'value' : u.famille },{ 'attr': {'class': 'form-control','placeholder':'famille'} })}}
+							</fieldset>
+					
+                                                                  <input type="submit" class="btn-secondary" value="modifier"></input>
+{{form_rest(form)}}
+                                                                          </form>    
+                                                                          
+                  {% endfor %}
+                                                                          </div>
+              
+             
+              
+              </div>
+            </div>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+
+ {% endblock%}

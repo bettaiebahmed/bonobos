@@ -4,3 +4,6 @@ bonobos_homepage:
 bonobos_social_page:
     path:     /sociale
     defaults: { _controller: BonobosBundle:Social:index }
+bonobos_social_profile:
+    path:     /sociale/profile
+    defaults: { _controller: BonobosBundle:Profile:Modify }
